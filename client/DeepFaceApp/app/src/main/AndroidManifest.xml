@@ -3,6 +3,7 @@
     package="com.summer.ram.deepfaceapp">
 
     <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission-sdk-23>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET"></uses-permission-sdk-23>
     <application
         android:name="com.summer.ram.deepfaceapp.MainApplication"
         android:allowBackup="true"

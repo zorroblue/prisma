@@ -21,7 +21,7 @@ import com.facebook.litho.LithoView;
 public class MainActivity extends Activity {
 
     public int PICK_IMAGE_REQUEST = 1;
-    public String filePath;
+    public String filePath = null;
     public int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=12;
 
     @Override
@@ -38,6 +38,11 @@ public class MainActivity extends Activity {
                                             Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_LONG).show();
                                             // write the uploading part to server here
                                             imageBrowse();
+                                            if(filePath != null)
+                                            {
+                                                // render the image into the imageview
+
+                                            }
                                         }
                                     })
                                     .build();
