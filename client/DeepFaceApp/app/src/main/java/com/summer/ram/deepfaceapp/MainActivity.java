@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
+import com.summer.ram.deepfaceapp.network.ImageUploadService;
 
 
 public class MainActivity extends Activity {
@@ -36,12 +37,9 @@ public class MainActivity extends Activity {
                                         @Override
                                         public void onButtonClick() {
                                             Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_LONG).show();
-                                            // write the uploading part to server here
                                             imageBrowse();
-                                            if(filePath != null)
-                                            {
-                                                // render the image into the imageview
-
+                                            if(filePath != null) { // a picture has been selected
+                                                ImageUploadService.send(filePath);
                                             }
                                         }
                                     })

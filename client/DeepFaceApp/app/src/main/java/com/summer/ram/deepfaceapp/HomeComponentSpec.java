@@ -35,9 +35,6 @@ public class HomeComponentSpec {
                                             .listener(buttonListener)
                                             .build();
 
-        Component<Image> imageComponent = Image.create(c)
-                .drawable()
-                .build();
 
 
         return Column.create(c)

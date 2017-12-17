@@ -27,26 +27,26 @@ public class ImageUploadService {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
 // Change base URL to your upload server URL.
-        Service service = new Retrofit.Builder().baseUrl("http://192.168.0.234:3000").client(client).build().create(Service.class);
+        Service service = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000").client(client).build().create(Service.class);
 
 
         File file = new File(filePath);
 
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
-        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), reqFile);
 
-        retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body, name);
+        retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body);
         req.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 // Do Something
                 if(response.isSuccessful()) {
                     try {
-                        Log.d("DEBUG123", response.body().string());
+                        Log.d("DEBUG123", "Success");
                     }
                     catch (Exception e) {
                         e.printStackTrace();
+                        Log.d("DEBUG123", "Failed");
                     }
                 }
                 else {
