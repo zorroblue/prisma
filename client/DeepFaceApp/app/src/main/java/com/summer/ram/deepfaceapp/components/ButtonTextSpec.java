@@ -1,4 +1,4 @@
-package com.summer.ram.deepfaceapp;
+package com.summer.ram.deepfaceapp.components;
 
 import android.text.Layout;
 

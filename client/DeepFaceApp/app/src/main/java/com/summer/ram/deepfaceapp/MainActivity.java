@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
+import com.summer.ram.deepfaceapp.components.ButtonContainerSpec;
+import com.summer.ram.deepfaceapp.components.HomeComponent;
 import com.summer.ram.deepfaceapp.network.ImageUploadService;
 
 
@@ -24,33 +26,37 @@ public class MainActivity extends Activity {
     public int PICK_IMAGE_REQUEST = 1;
     public String filePath = null;
     public int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=12;
-
+    public LithoView lithoView;
+    public ComponentContext c;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ComponentContext c = new ComponentContext(this);
+        c = new ComponentContext(this);
 
-        final Component component = HomeComponent.create(c)
-                                    .context(MainActivity.this)
-                                    .buttonListener(new ButtonContainerSpec.OnButtonClickListener() {
-                                        @Override
-                                        public void onButtonClick() {
-                                            Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_LONG).show();
-                                            imageBrowse();
-                                            if(filePath != null) { // a picture has been selected
-                                                ImageUploadService.send(filePath);
-                                            }
-                                        }
-                                    })
-                                    .build();
+        final Component component = createHomeComponent(c);
 
-        final LithoView lithoView = LithoView.create(
+         lithoView = LithoView.create(
                 this,
                 component
                 );
 
         setContentView(lithoView);
+    }
+
+    Component createHomeComponent(ComponentContext c) {
+        return HomeComponent.create(c)
+                .context(MainActivity.this)
+                .filePath(filePath)
+                .buttonListener(new ButtonContainerSpec.OnButtonClickListener() {
+                    @Override
+                    public void onButtonClick() {
+                        imageBrowse();
+                        Log.d("Browsed filepath = ", filePath!=null ? filePath : "NULL");
+
+                    }
+                })
+                .build();
     }
 
     @TargetApi(23)
@@ -92,8 +98,10 @@ public class MainActivity extends Activity {
 
                 filePath = getPath(picUri);
                 Log.d("DEBUG123", filePath);
-              //  imageView.setImageURI(picUri);
-
+                lithoView.setComponent(createHomeComponent(c));
+                if(filePath != null) { // a picture has been selected
+                    ImageUploadService.send(filePath);
+                }
             }
 
         }

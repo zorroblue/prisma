@@ -1,8 +1,7 @@
-package com.summer.ram.deepfaceapp;
+package com.summer.ram.deepfaceapp.components;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.widget.Toast;
 
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
@@ -11,11 +10,9 @@ import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.litho.widget.Image;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaEdge;
-
 
 /**
  * Created by rameshwar on 16/12/17
@@ -25,7 +22,7 @@ import com.facebook.yoga.YogaEdge;
 @LayoutSpec
 public class HomeComponentSpec {
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(ComponentContext c, @Prop final Context context, @Prop final ButtonContainerSpec.OnButtonClickListener buttonListener) {
+    static ComponentLayout onCreateLayout(ComponentContext c, @Prop final Context context, @Prop final ButtonContainerSpec.OnButtonClickListener buttonListener, @Prop String filePath) {
         Component<Text> introText = Text.create(c)
                 .textSizeDip(16)
                 .textColor(Color.WHITE)
@@ -35,6 +32,9 @@ public class HomeComponentSpec {
                                             .listener(buttonListener)
                                             .build();
 
+        Component<ImageContainer> image = ImageContainer.create(c)
+                                            .stateFilePath(filePath)
+                                            .build();
 
 
         return Column.create(c)
@@ -42,6 +42,7 @@ public class HomeComponentSpec {
                 .marginPx(YogaEdge.ALL, 20)
                 .paddingDip(YogaEdge.ALL, 20)
                 .child(introText)
+                .child(image)
                 .child(button)
                 .backgroundColor(Color.BLACK)
                 .build();
