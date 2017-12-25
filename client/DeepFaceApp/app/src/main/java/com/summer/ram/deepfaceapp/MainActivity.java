@@ -98,7 +98,11 @@ public class MainActivity extends Activity {
 
                 filePath = getPath(picUri);
                 Log.d("DEBUG123", filePath);
+
+                // recreate the entire component as the data flow is from root to child and not intra-component
                 lithoView.setComponent(createHomeComponent(c));
+
+                // upload the picture to the server
                 if(filePath != null) { // a picture has been selected
                     ImageUploadService.send(filePath);
                 }
