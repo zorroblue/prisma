@@ -63,11 +63,11 @@ public class HomeComponentSpec {
 
     private static Component<Recycler> getRecyclerComponent(ComponentContext c) {
         RecyclerBinder binder = new RecyclerBinder(c, new LinearLayoutInfo(c.getBaseContext(), OrientationHelper.HORIZONTAL, false));
-        int x[] = {R.drawable.the_scream, R.drawable.rain_princess};
-        for (int i = 0; i < 2; i++) {
+        int filters[] = {R.drawable.the_scream, R.drawable.rain_princess, R.drawable.la_muse};
+        for (int i = 0; i < filters.length; i++) {
             binder.insertItemAt(i, ComponentInfo.create().component(
                     FilterImageListItem.create(c)
-                            .drawable(c.getBaseContext().getResources().getDrawable(x[i]))
+                            .drawable(c.getBaseContext().getResources().getDrawable(filters[i]))
                             .build()
             ).build());
         }
