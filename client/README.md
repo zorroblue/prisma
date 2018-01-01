@@ -4,8 +4,8 @@ This app is basically a image select-and-upload service which communicates with 
 
 ## Dependencies
 
-1. Litho
-2. Retrofit
+1. [Litho](https://www.github.com/facebook/litho)
+2. [Retrofit](https://square.github.io/retrofit/)
 
 
 ## Running the app

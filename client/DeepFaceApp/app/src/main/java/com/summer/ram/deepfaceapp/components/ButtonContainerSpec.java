@@ -32,7 +32,7 @@ public class ButtonContainerSpec {
                 .alignItems(YogaAlign.CENTER)
                 .justifyContent(YogaJustify.CENTER)
                 .child(Card.create(c)
-                        .cardBackgroundColorRes(R.color.colorAccent)
+                        .cardBackgroundColor(Color.RED)
                         .cornerRadiusDip(2)
                         .elevationDip(2)
                         .content(ButtonText.create(c).text("Upload"))

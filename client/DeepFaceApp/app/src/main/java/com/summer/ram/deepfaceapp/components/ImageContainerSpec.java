@@ -1,5 +1,6 @@
 package com.summer.ram.deepfaceapp.components;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.facebook.litho.annotations.State;
 import com.facebook.litho.widget.Card;
 import com.facebook.litho.widget.Image;
 import com.facebook.yoga.YogaAlign;
+import com.facebook.yoga.YogaEdge;
 import com.facebook.yoga.YogaJustify;
 import com.summer.ram.deepfaceapp.R;
 
@@ -37,10 +39,26 @@ public class ImageContainerSpec {
         return Column.create(c)
                 .alignItems(YogaAlign.CENTER)
                 .justifyContent(YogaJustify.CENTER)
+                .widthDip(200)
+                .heightDip(200)
+                .paddingDip(YogaEdge.TOP, 30)
                 .child(Image.create(c)
-                        .drawable(stateFilePath==null ? c.getBaseContext().getResources().getDrawable(R.drawable.image_blank) : Drawable.createFromPath(stateFilePath))
+                        .drawable(stateFilePath==null ? c.getBaseContext().getResources().getDrawable(R.drawable.ic_add_a_photo_black_24dp) : Drawable.createFromPath(stateFilePath))
                         .build()
                 )
+                .borderColor(Color.BLACK)
+                .clickHandler(ImageContainer.onClick(c))
                 .build();
+    }
+
+    @OnEvent(ClickEvent.class)
+    static void onClick(ComponentContext c, @FromEvent View view,
+                        @Prop OnImageClickListener listener) {
+        listener.onImageClick();
+    }
+
+
+    public interface OnImageClickListener {
+        void onImageClick();
     }
 }

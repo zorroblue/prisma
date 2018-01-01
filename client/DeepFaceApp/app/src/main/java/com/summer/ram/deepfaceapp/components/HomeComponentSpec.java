@@ -22,11 +22,11 @@ import com.facebook.yoga.YogaEdge;
 @LayoutSpec
 public class HomeComponentSpec {
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(ComponentContext c, @Prop final Context context, @Prop final ButtonContainerSpec.OnButtonClickListener buttonListener, @Prop String filePath) {
+    static ComponentLayout onCreateLayout(ComponentContext c, @Prop final Context context, @Prop final ButtonContainerSpec.OnButtonClickListener buttonListener, @Prop final ImageContainerSpec.OnImageClickListener imageListener, @Prop String filePath) {
         Component<Text> introText = Text.create(c)
-                .textSizeDip(16)
-                .textColor(Color.WHITE)
-                .text("UPLOAD IMAGE")
+                .textSizeDip(30)
+                .textColor(Color.BLUE)
+                .text("DeepArt")
                 .build();
         Component<ButtonContainer> button = ButtonContainer.create(c)
                                             .listener(buttonListener)
@@ -34,17 +34,18 @@ public class HomeComponentSpec {
 
         Component<ImageContainer> image = ImageContainer.create(c)
                                             .stateFilePath(filePath)
+                                            .listener(imageListener)
                                             .build();
 
 
         return Column.create(c)
                 .alignItems(YogaAlign.CENTER)
-                .marginPx(YogaEdge.ALL, 20)
+                .marginPx(YogaEdge.ALL, 100)
                 .paddingDip(YogaEdge.ALL, 20)
                 .child(introText)
                 .child(image)
                 .child(button)
-                .backgroundColor(Color.BLACK)
+                .backgroundColor(Color.WHITE)
                 .build();
 
     }

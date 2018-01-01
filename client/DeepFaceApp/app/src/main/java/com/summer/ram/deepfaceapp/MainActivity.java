@@ -18,6 +18,7 @@ import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
 import com.summer.ram.deepfaceapp.components.ButtonContainerSpec;
 import com.summer.ram.deepfaceapp.components.HomeComponent;
+import com.summer.ram.deepfaceapp.components.ImageContainerSpec;
 import com.summer.ram.deepfaceapp.network.ImageUploadService;
 
 
@@ -51,9 +52,14 @@ public class MainActivity extends Activity {
                 .buttonListener(new ButtonContainerSpec.OnButtonClickListener() {
                     @Override
                     public void onButtonClick() {
+                        uploadToServer();
+                    }
+                })
+                .imageListener(new ImageContainerSpec.OnImageClickListener() {
+                    @Override
+                    public void onImageClick() {
                         imageBrowse();
                         Log.d("Browsed filepath = ", filePath!=null ? filePath : "NULL");
-
                     }
                 })
                 .build();
@@ -101,11 +107,6 @@ public class MainActivity extends Activity {
 
                 // recreate the entire component as the data flow is from root to child and not intra-component
                 lithoView.setComponent(createHomeComponent(c));
-
-                // upload the picture to the server
-                if(filePath != null) { // a picture has been selected
-                    ImageUploadService.send(filePath);
-                }
             }
 
         }
@@ -123,4 +124,15 @@ public class MainActivity extends Activity {
         cursor.close();
         return result;
     }
+
+    public void uploadToServer() {
+        // upload the picture to the server
+        if(filePath != null) { // a picture has been selected
+            ImageUploadService.send(filePath);
+        }
+        else
+            Toast.makeText(MainActivity.this, "Please select a valid file!", Toast.LENGTH_LONG).show();
+    }
+
 }
+
