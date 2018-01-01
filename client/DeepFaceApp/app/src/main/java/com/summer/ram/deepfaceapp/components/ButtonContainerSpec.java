@@ -1,9 +1,7 @@
 package com.summer.ram.deepfaceapp.components;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Column;
@@ -16,8 +14,8 @@ import com.facebook.litho.annotations.OnEvent;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.widget.Card;
 import com.facebook.yoga.YogaAlign;
+import com.facebook.yoga.YogaEdge;
 import com.facebook.yoga.YogaJustify;
-import com.summer.ram.deepfaceapp.R;
 
 /**
  * Created by rameshwar on 16/12/17.
@@ -39,6 +37,7 @@ public class ButtonContainerSpec {
                         .withLayout()
                         .flexShrink(1)
                         .alignSelf(YogaAlign.CENTER))
+                .paddingDip(YogaEdge.TOP, 40)
                 .clickHandler(ButtonContainer.onClick(c))
                 .build();
     }
