@@ -1,4 +1,3 @@
-
 # Fast neural style
 
 I have adapted Abhishek Kadian's code for the server part.
@@ -7,17 +6,18 @@ If you are in the KGP network, you may have to use SSH tunneling to access the A
 
 You can test this server by
 
-`python app.py`
+1. `python app.py`
 
 The flask app would run at port 5000
+Skip step 2 if you aren't behind a proxy.
 
-Then tunnel your SSH connection
+2. Then tunnel your SSH connection
 
 `ssh -L 8090:<server-ip>:5000 username@server -N`
 
 You tunnel the SSH connection to port 8090(any free port would be fine) on your local system
 
-You can access the API endpoint by sending an appropriate POST request to `https://localhost:8090/upload/'
+3. You can access the API endpoint by sending an appropriate POST request to `https://localhost:8090/upload/'
 
 
 # fast-neural-style :city_sunrise: :rocket:
