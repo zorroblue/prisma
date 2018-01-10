@@ -10,6 +10,7 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.widget.Image;
+import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
 
 /**
@@ -27,8 +28,11 @@ public class FilterImageListItemSpec {
                 .child(Image.create(c)
                             .drawable(drawable)
                             .scaleType(ImageView.ScaleType.FIT_CENTER)
-                            .build()
-                ).build();
+                )
+                .child(Text.create(c)
+                            .text("Here")
+                            )
+                .build();
     }
 
 

@@ -3,9 +3,11 @@ package com.summer.ram.deepfaceapp;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -128,10 +130,19 @@ public class MainActivity extends Activity {
     public void uploadToServer() {
         // upload the picture to the server
         if(filePath != null) { // a picture has been selected
-            ImageUploadService.send(filePath);
+            if(isNetworkConnected())
+                ImageUploadService.send(filePath);
+            else
+                Toast.makeText(MainActivity.this, "Please connect to the internet", Toast.LENGTH_LONG).show();
         }
         else
             Toast.makeText(MainActivity.this, "Please select a valid file!", Toast.LENGTH_LONG).show();
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 
 }

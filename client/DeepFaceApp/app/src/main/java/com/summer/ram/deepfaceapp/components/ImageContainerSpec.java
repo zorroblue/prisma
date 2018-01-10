@@ -23,10 +23,13 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.State;
 import com.facebook.litho.widget.Card;
 import com.facebook.litho.widget.Image;
+import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaEdge;
 import com.facebook.yoga.YogaJustify;
 import com.summer.ram.deepfaceapp.R;
+
+import static com.facebook.yoga.YogaPositionType.ABSOLUTE;
 
 /**
  * Created by rameshwar on 17/12/17.
@@ -46,8 +49,11 @@ public class ImageContainerSpec {
                 .child(Image.create(c)
                         .drawable(stateFilePath==null ? c.getBaseContext().getResources().getDrawable(R.drawable.ic_add_a_photo_black_24dp) : Drawable.createFromPath(stateFilePath))
                         .scaleType(ImageView.ScaleType.FIT_XY)
-                        .build()
                 )
+                /*.child(Text.create(c)
+                        .text("Overlaid text")
+                        .positionType(ABSOLUTE)
+                )*/
                 .borderColor(Color.BLACK)
                 .borderWidthDip(YogaEdge.ALL, 5)
                 .clickHandler(ImageContainer.onClick(c))

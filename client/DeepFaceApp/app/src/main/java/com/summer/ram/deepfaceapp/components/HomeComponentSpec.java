@@ -61,9 +61,11 @@ public class HomeComponentSpec {
 
     }
 
-    private static Component<Recycler> getRecyclerComponent(ComponentContext c) {
+    public static Component<Recycler> getRecyclerComponent(ComponentContext c) {
+        //RecyclerBinder binder = new RecyclerBinder.Builder().layoutInfo(new LinearLayoutInfo(c.getBaseContext(), OrientationHelper.HORIZONTAL, false)).build(c);
         RecyclerBinder binder = new RecyclerBinder(c, new LinearLayoutInfo(c.getBaseContext(), OrientationHelper.HORIZONTAL, false));
-        int filters[] = {R.drawable.the_scream, R.drawable.rain_princess, R.drawable.la_muse};
+
+        int filters[] = {R.drawable.the_scream, R.drawable.rain_princess, R.drawable.la_muse, R.drawable.mosaic, R.drawable.starry_night, R.drawable.udnie};
         for (int i = 0; i < filters.length; i++) {
             binder.insertItemAt(i, ComponentInfo.create().component(
                     FilterImageListItem.create(c)
