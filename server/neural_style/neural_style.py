@@ -140,4 +140,4 @@ def stylize(content_image, model, content_scale=None, cuda=0):
         style_model.cuda()
 
     output = style_model(content_image)
-    return utils.tensor_to_Image(output)
+    return utils.tensor_to_Image(output, cuda)

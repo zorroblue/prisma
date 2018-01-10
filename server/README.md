@@ -3,6 +3,23 @@
 
 I have adapted Abhishek Kadian's code for the server part.
 
+If you are in the KGP network, you may have to use SSH tunneling to access the API if you plan to use the CSE GPU server.(P.S If you find a better way, do tell me :) )
+
+You can test this server by
+
+`python app.py`
+
+The flask app would run at port 5000
+
+Then tunnel your SSH connection
+
+`ssh -L 8090:<server-ip>:5000 username@server -N`
+
+You tunnel the SSH connection to port 8090(any free port would be fine) on your local system
+
+You can access the API endpoint by sending an appropriate POST request to `https://localhost:8090/upload/'
+
+
 # fast-neural-style :city_sunrise: :rocket:
 
 This repository contains a pytorch implementation of an algorithm for artistic style transfer. The algorithm can be used to mix the content of an image with the style of another image. For example, here is a photograph of a door arch rendered in the style of a stained glass painting.
