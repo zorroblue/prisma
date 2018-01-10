@@ -1,12 +1,16 @@
 from flask import Flask, render_template, jsonify, request
 from PIL import Image
+from neural_style.neural_style import stylize
+
 app = Flask(__name__)
+MODEL_DIR = 'saved-models/'
 
 @app.route('/upload', methods=['POST'])
 def check_image():
     file = request.files['image']
     img = Image.open(file.stream)
-    img.show()
+    output = stylize(img, model= MODEL_DIR+'udnie.pth')
+    output.show()
     return jsonify(status='success')
 
 @app.errorhandler(404)

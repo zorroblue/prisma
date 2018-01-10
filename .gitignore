@@ -1,1 +1,3 @@
 server/playground/
+server/saved-models/
+*.pyc
