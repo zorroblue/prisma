@@ -2,14 +2,14 @@
 
 I have adapted Abhishek Kadian's code for the server part.
 
-If you are in the KGP network, you may have to use SSH tunneling to access the API if you plan to use the CSE GPU server.(P.S If you find a better way, do tell me :) )
+If you are in the KGP network, you may have to use SSH tunneling to access the API if you plan to use the CSE GPU server.(P.S If you find a better way, do tell me :smile: )
 
 You can test this server by
 
 1. `python app.py`
 
-The flask app would run at port 5000
-Skip step 2 if you aren't behind a proxy.
+The flask app would run at port 5000 in your server.
+Skip step 2 if you aren't behind a proxy and are running the server in your own machine.
 
 2. Then tunnel your SSH connection
 
