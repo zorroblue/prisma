@@ -13,11 +13,6 @@ This app is basically a image select-and-upload service which communicates with 
 The app should be built successfully as long as you have the Android SDK 25. In case you have a higher version, you can edit `build.gradle` accordingly. 
 <br>
 
-### TODO
-
-- [ ] Add support for multiple filters in server
-- [ ] Add screenshots
-
 
 ### MIT LICENSE
 
