@@ -1,8 +1,13 @@
 package com.summer.ram.deepfaceapp.network;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.Buffer;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -21,14 +26,15 @@ import retrofit2.Retrofit;
 
 public class ImageUploadService {
 
-    public static void send(String filePath) {
+    public static Bitmap bitmap = null;
+
+    public static void send(String filePath, final ImageHandler imageHandler) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
 // Change base URL to your upload server URL.
-        Service service = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000").client(client).build().create(Service.class);
-
+        Service service = new Retrofit.Builder().baseUrl("http://10.0.2.2:8090").client(client).build().create(Service.class);
 
         File file = new File(filePath);
 
@@ -43,6 +49,9 @@ public class ImageUploadService {
                 if(response.isSuccessful()) {
                     try {
                         Log.d("DEBUG123", "Success");
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(response.body().byteStream());
+                        //handleResponse(bufferedInputStream);
+                        imageHandler.bitmapHandler(bufferedInputStream);
                     }
                     catch (Exception e) {
                         e.printStackTrace();
@@ -59,5 +68,14 @@ public class ImageUploadService {
                 t.printStackTrace();
             }
         });
+    }
+
+    public static void handleResponse(BufferedInputStream bufferedInputStream) {
+        bitmap = BitmapFactory.decodeStream(bufferedInputStream);
+        Log.d("DEBUG123", "Bitmap Done");
+    }
+
+    public interface ImageHandler {
+        public void bitmapHandler(BufferedInputStream bufferedInputStream);
     }
 }
